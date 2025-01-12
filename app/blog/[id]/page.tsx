@@ -6,6 +6,7 @@ import slugify from 'slugify';
 import formatDate from '../../utils/formatDate';
 import "../../../public/content/text.mdx"
 import FloatingNavbar from "../../components/Navbar";
+import Image from 'next/image';
 
 function CustomLink(props) {
   const href = props.href;
@@ -34,7 +35,7 @@ function Code({ children, className, ...props }) {
 
 function RoundedImage(props) {
   return (
-    <img
+    <Image
       alt={props.alt}
       className="rounded-lg"
       width={props.width || 1200}

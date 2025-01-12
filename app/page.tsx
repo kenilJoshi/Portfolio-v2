@@ -1,15 +1,37 @@
-import Image from "next/image";
+import HomeSection from "./components/Home";
+import AboutSection from "./components/About";
 import FloatingNavbar from "./components/Navbar";
-import HomeSection from "./components/Home"
+import WorkExperience from "./components/WorkExp";
+import EducationSection from "./components/Educations";
+import SkillsSection from "./components/Skills";
+import ProjectSection from "./components/Projects";
+import ContactSection from "./components/Contact";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <div className="pt-32">
+    <div className="flex flex-col items-center gap-10 p-8 pb-20 sm:p-20 font-[var(--font-geist-sans)]">
+      <div className="w-full max-w-[35rem]">
         <HomeSection />
       </div>
+      <div className="w-full max-w-[35rem]">
+        <AboutSection />
+      </div>
+      <div className="w-full max-w-[35rem]">
+        <WorkExperience />
+      </div>
+      <div className="w-full max-w-[35rem]">
+        <EducationSection />
+      </div>
+      <div className="w-full max-w-[35rem]">
+        <SkillsSection />
+      </div>
+      <div className="w-full max-w-[37rem]">
+        <ProjectSection />
+      </div>
+      <div className="w-full max-w-[37rem]">
+        <ContactSection />
+      </div>
       <FloatingNavbar />
-
     </div>
   );
 }

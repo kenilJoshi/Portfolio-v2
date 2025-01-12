@@ -9,7 +9,7 @@ const ContactSection = () => {
           Get In Touch
         </h1>
         <p className="text-lg leading-relaxed text-gray-400">
-  If you'd like to collaborate with me or work on a project together, feel free to{" "}
+  If you&apos;d like to collaborate with me or work on a project together, feel free to{" "}
   <a
     href="https://x.com/KenilJoshi3"
     target="_blank"

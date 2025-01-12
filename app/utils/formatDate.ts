@@ -1,34 +1,35 @@
-function formatDate(date: any){
-    let currentDate = new Date()
-    if (!date.includes("T")) {
-		date = `${date}T00:00:00`;
-	}
-    let targetDate = new Date(date)
+function formatDate(date: string): string {
+  const currentDate = new Date();
+  
+  if (!date.includes("T")) {
+    date = `${date}T00:00:00`;
+  }
 
-    let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear()
-    let monthsAgo = currentDate.getMonth() - targetDate.getMonth();
-    let daysAgo = currentDate.getDate() - targetDate.getDate();
+  const targetDate = new Date(date);
 
-    let formattedDate = ""
+  const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
+  const monthsAgo = currentDate.getMonth() - targetDate.getMonth();
+  const daysAgo = currentDate.getDate() - targetDate.getDate();
 
-    if (yearsAgo > 0) {
-		formattedDate = `${yearsAgo}y ago`;
-	} else if (monthsAgo > 0) {
-		formattedDate = `${monthsAgo}mo ago`;
-	} else if (daysAgo > 0) {
-		formattedDate = `${daysAgo}d ago`;
-	} else {
-		formattedDate = "Today";
-	}
+  let formattedDate: string = "";
 
-    let fullDate = targetDate.toLocaleString("en-us", {
-        month: "long",
-		day: "numeric",
-		year: "numeric",
-    })
+  if (yearsAgo > 0) {
+    formattedDate = `${yearsAgo}y ago`;
+  } else if (monthsAgo > 0) {
+    formattedDate = `${monthsAgo}mo ago`;
+  } else if (daysAgo > 0) {
+    formattedDate = `${daysAgo}d ago`;
+  } else {
+    formattedDate = "Today";
+  }
 
-    return `${fullDate} (${formattedDate})`
+  const fullDate: string = targetDate.toLocaleString("en-us", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 
+  return `${fullDate} (${formattedDate})`;
 }
 
-export default formatDate
+export default formatDate;

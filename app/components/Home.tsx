@@ -6,7 +6,7 @@ const HeroSection = () => {
     <section className="flex gap-10 items-center">
       <div>
         <h1 className="text-5xl font-bold text-gray-100">
-          Hi, I'm {PersonalDetails.firstName} 👋
+          Hi, I&apos;m {PersonalDetails.firstName} 👋
         </h1>
         <p className="text-xl text-gray-400">Full Stack Developer</p>
       </div>

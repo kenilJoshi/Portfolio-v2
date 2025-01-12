@@ -80,7 +80,7 @@ const ProjectSection = () => {
           Checkout Some of My Projects
         </h1>
         <p className="text-lg leading-relaxed text-gray-400">
-          I've worked on a variety of Projects, from simple to complex web
+          I&apos;ve worked on a variety of Projects, from simple to complex web
           applications. Here are some of my creations:
         </p>
       </div>

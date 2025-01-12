@@ -71,7 +71,7 @@ function ConsCard({ title, cons }) {
 }
 
 function createHeading(level) {
-  return ({ children }) => {
+  const Heading = ({ children }) => {
     const slug = slugify(children);
     return React.createElement(
       `h${level}`,
@@ -86,7 +86,11 @@ function createHeading(level) {
       ]
     );
   };
+
+  Heading.displayName = `Heading${level}`;
+  return Heading;
 }
+
 
 function ProsCard({ title, pros }) {
   console.log(title);

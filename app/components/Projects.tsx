@@ -24,13 +24,16 @@ const ProjectCard = ({ project }: { project: Project }) => {
           objectFit="cover"
           className="rounded-t-lg"
         />
+        ``
       </div>
 
       <div className="p-4 flex flex-col justify-between flex-1">
         <div>
           <h2 className="text-lg font-semibold mb-1">{project.title}</h2>
           <p className="text-xs text-gray-400 mb-2">{project.date}</p>
-          <p className="text-gray-300 mb-2 line-clamp-2">{project.description}</p>
+          <p className="text-gray-300 mb-2 line-clamp-2">
+            {project.description}
+          </p>
 
           <div className="flex flex-wrap gap-1 mb-2">
             {project.tags.map((tag, index) => (

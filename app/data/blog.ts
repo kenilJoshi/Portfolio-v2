@@ -8,14 +8,4 @@ export interface BlogsType {
   coverImage?: string | null;
 }
 
-export const Blogs: BlogsType[] = [
-  {
-    id: 1,
-    title: "How to Learn React",
-    content: "React is a JavaScript library for building user interfaces...",
-    author: "Kenil Joshi",
-    filePath: "text.mdx",
-    publishedAt: "2024-09-23",
-    coverImage: null,
-  }
-];
+export const Blogs: BlogsType[] = [];

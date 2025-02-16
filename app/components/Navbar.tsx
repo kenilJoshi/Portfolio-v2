@@ -1,4 +1,10 @@
-import { FaHome, FaLinkedin, FaGithub, FaGoogleDrive } from "react-icons/fa";
+import {
+  FaHome,
+  FaLinkedin,
+  FaGithub,
+  FaGoogleDrive,
+  FaBlogger,
+} from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 
@@ -10,14 +16,14 @@ export default function FloatingNavbar() {
           <FaHome />
         </Link>
       </div>
-      {/* <div className="">
-        <a
+      <div className="">
+        <Link
           href="/blogs"
           className="text-white text-lg hover:text-gray-300 transform transition-transform duration-300 hover:scale-125"
         >
           <FaBlogger />
-        </a>
-      </div> */}
+        </Link>
+      </div>
       <div className="">
         <Link
           href="https://www.linkedin.com/in/kenil-joshi-2536741ab/"
@@ -43,12 +49,12 @@ export default function FloatingNavbar() {
         </Link>
       </div>
       <div className="transform transition-transform duration-300 hover:scale-125">
-      <Link
-        href="https://drive.google.com/file/d/1_pAri8vG2cwnkLYs_YXl9FkWStoUPP2U/view?usp=drive_link"
-        className="text-white text-lg hover:text-gray-300"
-      >
-        <FaGoogleDrive />
-      </Link>
+        <Link
+          href="https://drive.google.com/file/d/1_pAri8vG2cwnkLYs_YXl9FkWStoUPP2U/view?usp=drive_link"
+          className="text-white text-lg hover:text-gray-300"
+        >
+          <FaGoogleDrive />
+        </Link>
       </div>
     </div>
   );

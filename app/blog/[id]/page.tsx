@@ -1,16 +1,17 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { Blogs as blogs } from "../../data/blog"
-import slugify from 'slugify';
-import formatDate from '../../utils/formatDate';
-import "../../../public/content/text.mdx"
+import React, { useEffect, useState } from "react";
+import { Blogs as blogs } from "../../data/blog";
+import slugify from "slugify";
+import formatDate from "../../utils/formatDate";
+import "../../../public/content/text.mdx";
 import FloatingNavbar from "../../components/Navbar";
-import Image from 'next/image';
+import Image from "next/image";
+import { VscCircleSmallFilled } from "react-icons/vsc";
 
 function CustomLink(props) {
   const href = props.href;
-  if (href?.startsWith('#')) {
+  if (href?.startsWith("#")) {
     return <a {...props} />;
   }
   return (
@@ -30,6 +31,15 @@ function Code({ children, className, ...props }) {
     >
       <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
     </pre>
+  );
+}
+
+function BulletIcon({ children }: { children: React.ReactNode }) {
+  return (
+    <div style={{ display: "inline-flex", gap: "4px" }} className="leading-7">
+      <VscCircleSmallFilled />
+      <span>{children}</span>
+    </div>
   );
 }
 
@@ -71,19 +81,23 @@ function ConsCard({ title, cons }) {
 }
 
 function createHeading(level) {
-  const Heading = ({ children }) => {
+  const Heading = ({ children }) => {    
     const slug = slugify(children);
     return React.createElement(
       `h${level}`,
-      { id: slug, className: 'title font-medium text-2xl tracking-tighter max-w-[650px] py-2' },
+      {
+        id: slug,
+        className:
+          "title font-medium text-2xl tracking-tighter max-w-[650px] py-2",
+      },
       [
-        React.createElement('a', {
+        React.createElement("a", {
           href: `#${slug}`,
           key: `link-${slug}`,
-          className: 'anchor text-2xl',
+          className: "anchor text-2xl",
         }),
         children,
-      ]
+      ],
     );
   };
 
@@ -91,10 +105,9 @@ function createHeading(level) {
   return Heading;
 }
 
-
 function ProsCard({ title, pros }) {
   console.log(title);
-  
+
   return (
     <div className="border border-emerald-200 dark:border-emerald-900 bg-neutral-50 dark:bg-neutral-900 rounded-xl p-6 my-4 w-full">
       <span>{`You might use ${title} if...`}</span>
@@ -140,12 +153,20 @@ function CustomNote({ children }: { children: React.ReactNode }) {
   );
 }
 
-function SpanNote({ children }: { children: React.ReactNode }) {
+function H1({ children }: { children: React.ReactNode }) {
   return (
-    <span className="border-2	">
-      {children}
-    </span>
+    <h1 style={{ fontSize: "2.0rem", fontWeight: "bold" }}>{children}</h1>
   );
+}
+
+function H2({ children }: {children: React.ReactNode}) {
+  return (
+    <h2 style={{ fontSize: "1.0rem", fontWeight: "bold" }}>{children}</h2>
+  )
+}
+
+function Br({ children }: { children: React.ReactNode }) {
+  return <br />;
 }
 
 const components = {
@@ -162,15 +183,25 @@ const components = {
   img: RoundedImage,
   code: Code,
   CustomNote,
-  SpanNote
+  H1,
+  H2,
+  Image,
+  Br,
+  BulletIcon
 };
 
-const MyPage = ({ params: paramsPromise }: { params: Promise<{ id: string }> }) => {
+const MyPage = ({
+  params: paramsPromise,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   const params = React.use(paramsPromise);
   const { id } = params;
-  const [MdxComponent, setMdxComponent] = useState<React.ComponentType<{ components: typeof components }> | null>(null);
-  const [blogTitle, setBlogTitle] = useState('');
-  const [publishDate, setPublishDate] = useState('');
+  const [MdxComponent, setMdxComponent] = useState<React.ComponentType<{
+    components: typeof components;
+  }> | null>(null);
+  const [blogTitle, setBlogTitle] = useState("");
+  const [publishDate, setPublishDate] = useState("");
   const [coverImage, setCoverImage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -179,12 +210,14 @@ const MyPage = ({ params: paramsPromise }: { params: Promise<{ id: string }> }) 
     setPublishDate(blog_?.publishedAt || "");
     setCoverImage(blog_?.coverImage || null);
     console.log("Kenil", id);
-    
+
     const loadFile = async () => {
       try {
         console.log(blog_?.filePath);
-        
-        const mdxModule = await import(`../../../public/content/${blog_?.filePath}`);
+
+        const mdxModule = await import(
+          `../../../public/content/${blog_?.filePath}`
+        );
         setMdxComponent(() => mdxModule.default);
       } catch (error) {
         console.error(`Error loading the MDX file: ${error}`);
@@ -196,8 +229,10 @@ const MyPage = ({ params: paramsPromise }: { params: Promise<{ id: string }> }) 
 
   return (
     <div className=" text-white">
-      <div className="mx-[25rem] py-10">
-        <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">{blogTitle}</h1>
+      <div className="mx-[2rem] md:mx-[25rem] py-10">
+        <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
+          {blogTitle}
+        </h1>
         <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
             {formatDate(publishDate)}
@@ -214,7 +249,7 @@ const MyPage = ({ params: paramsPromise }: { params: Promise<{ id: string }> }) 
             />
           </div>
         )}
-        <div>
+        <div className="text-stone-300 leading-7">
           {MdxComponent ? (
             <MdxComponent components={components} />
           ) : (

@@ -1,242 +1,172 @@
-Ever thought of privacy concerns while using 3rd party apps? If so, docmost is the best solution for you.
+{" "}
 
-[Docmost](https://docmost.com) is an open-source alternative to Confluence and Notion, which you can self-host and all the data stays on your servers. It is build using React, Node.js and PostgreSQL.
+<Image
+  src="https://res.cloudinary.com/dugadzwcv/image/upload/v1740920385/1_mi2OmU60IUqO7Td6x9MnrA_joqfnu.png"
+  alt="Architecture of beckn"
+  width={1200}
+  height={630}
+/>
+<Br />
+What are Database Indexing <Br />
+In a database, there are two primary functions: storing data and retrieving it when
+needed. While storing data is generally fast, retrieval can be slower because the
+database typically scans each row line by line to find the required information.
+When dealing with a large number of rows, this process can become significantly time-consuming.
+To address this issue, indexing was introduced, allowing databases to retrieve data
+more efficiently and quickly.
+<Br />
+In simple terms intexing is the pointer to the data in the table. The pointer helps
+the storage engine to locate the data. Any kind of index usually slow down writes,
+because the index also needs to be updated every time a new data is inserted.
+<Br />
+There are various kind off data structure that can be used for indexing such as Hash
+Indexes, SSTable and LSM-Trees etc
+<Br />
+<H1>Hash Indexes</H1>
+<Br />
+<Image
+  src="https://res.cloudinary.com/dugadzwcv/image/upload/v1741976551/Screenshot_from_2025-03-14_23-50-12_uqhgcc.png"
+  alt="Architecture of beckn"
+  width={1200}
+  height={630}
+/>
+<Br />
+Hash index are the type of indexes that store data in key value pair. Key value pair
+stores are quite similar to dictonary type that you can find in any programming language
+which are usually implemented as a hash map. This is similar to hash map it is the
+simplest possible indexing stratergy in this whe ever you append a new key value
+pair in the file you also have to update the Hash map to reflect the offset of the
+data you just wrote
+<Br />
+<H2>Heres the Breakdown of that statement</H2>
+<BulletIcon>
+  The hash map (stored in memory) keeps track of where each key's value is
+  located in the file.
+</BulletIcon>
+<BulletIcon>
+  The offset is the position (or byte location) in the file where the new data
+  starts.
+</BulletIcon>
+<Br />
+Thats How The Hash Indexes works But There are some limitations of the Hash Indexes
+<BulletIcon>
+  The table should fit in key so if you have very large number of entries than
+  you are out of luck
+</BulletIcon>
+<BulletIcon>Range Quries are not Efficient</BulletIcon>
+<Br />
+<Br />
+<H1>SS Table</H1>
+SS Table(Sorted String Table) are an immutable data structure commanly used in database
+system, especially in NoSQLdatabase like LevelDB. They provide efficient storage
+and retrival of sorted key-value pair.
+<Br />
+<H2>How Does SSTable Work in Database</H2>
+<BulletIcon>
+  Writes: Data is first written to Memtable. Once it reaches a threshold its
+  flushed to disk as a new SSTable
+</BulletIcon>
+<BulletIcon>
+  Reads: A LookUp is performed in the MemTable first if not found in the
+  MemTable. The system searched accross Multiple SSTable using Bloom Filter
+</BulletIcon>
+<BulletIcon>
+  Compaction: Over time, multiple SSTables accumulate. A compaction process
+  merges and deletes obsolete data to improve efficiency.
+</BulletIcon>
+<H2>Limitation of SSTable</H2>
+<BulletIcon>
+  Since SS Table are immutable, new writes cannot modify existing SSTable
+</BulletIcon>
+<BulletIcon>
+  Over time, multiple SSTables accumulate because of the append-only nature.
+  This leads to lookup performance degradation as there are too many SSTable
+</BulletIcon>
+<Br />
+<Br />
+<H1>B Tree</H1>
+A B-Tree is a self-balancing tree used primary database and file systems to handle
+large amount of data efficiently. Like SSTable B-tree keeps key-value pair in sorted
+order by key. which allows efficient key-value lookups and range quries. But thats
+where the similarities end: B-tree has very different design philosophy. Every B-tree
+is made of node and child pointers. We call the top most node the root node, the
+nodes on the bottom level leaf node and everything else interrnal nodes. The formal
+defination of a B-tree can vary depending on who you ask. Heres the Defination of
+B-tree
+<Br />
+<H2>A B-tree of order K is a tree with these properties:</H2>
+<BulletIcon>Each node stores N key/value pairs, where 1 ≤ N ≤ K.</BulletIcon>
+<BulletIcon>
+  Internal nodes (except the root) have at least N/2 key/value pairs.
+</BulletIcon>
+<BulletIcon>Each node has N+1 children.</BulletIcon>
+<BulletIcon>
+  The root has at least one key and two children, unless it is the only node.
+</BulletIcon>
+<BulletIcon>
+  All leaves are at the same level, keeping the tree balanced.
+</BulletIcon>
+<Br />
+The other key characteristic of the B-tree is ordering. Within each node the
+element are kept in order. Any child to the left of the key must only contain
+other key that are less than it. Children to the right that are greater than it.
+This enforced ordering means you can search key very efficiently. Starting at
+the root node. do the following:
+<BulletIcon>
+  Check if the node contain the key that you are looking for.
+</BulletIcon>
+<BulletIcon>
+  If you dont find the key than find the location where the key would be
+  inserted into, if ypu are adding it.
+</BulletIcon>
+<BulletIcon>
+  Follow the child pointer at this spot down to the next level, and repeat the
+  process
+</BulletIcon>
+<Br />
+Heres the Depiction of the B-tree which is used for indexing:
+<Br />
+<Image
+  src="https://res.cloudinary.com/dugadzwcv/image/upload/v1742107632/Screenshot_2025-03-16_121610_k0zhxp.png"
+  alt="Architecture of beckn"
+  width={1200}
+  height={630}
+/>
+<Br />
+<H2>
+  Advantages of Btree: Btree are widely used in database and file system due to
+  their unique advantages:
+</H2>
+<BulletIcon>
+  The Balanced nature of B-tree ensures the operation like search, insertion and
+  deletion have a consistent performance typically in logarithmic time (O(log
+  n))
+</BulletIcon>
+<BulletIcon>
+  B-tree are designed to minimize the disk I/O operations this make them ideal
+  for the application that require frequent data retrival from disk storage.
+</BulletIcon>
+<Br />
+<H2>Application of B-tree:</H2>
+B-tree are used in various application where quick and efficient data retrival
+are required. Here are some applications of B-tree
+<BulletIcon>
+  Database is the most common usecase for the Btree as most of the modern
+  database use B-tree for indexing as this structure allows quick lookups,
+  insertion, deletion and range quries.
+</BulletIcon>
+<BulletIcon>
+  File System also uses the B-tree to manage directory and file entries
+  efficiently. Apple Filesystem uses B-tree varient for managing metadata.
+</BulletIcon>
+<BulletIcon>
+  In operating system B-tree are used to manage virtual memory and address
+  translation.
+</BulletIcon>
+<Br />
 
-Self hosting docmost may sound like a daunting task, but it's not that hard. In this guide, I will show you how to deploy docmost on your VPS and setting it up a custom domain.
-
-## Prerequisites
-
-1. 1.A VPS ofcourse.
-1. 2.A domain name.
-1. 3.Basic knowledge of Linux and Docker.
-
-## Tools that we will be using
-
-1. Docker
-1. Nginx (for reverse proxy)
-1. Certbot (for SSL)
-
-## Step 1: Setting up the environment
-
-1. SSH into your VPS. I am using a VPS with Ubuntu 20.04.
-
-```bash
-ssh user@your-vps-ip
-```
-
-2. Install Docker.
-
-Set up Docker's apt repository.
-
-```bash
-# Add Docker's official GPG key:
-sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-# Add the repository to Apt sources:
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-```
-
-Install the Docker packages.
-
-```bash
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-```
-
-Verify that the Docker Engine installation is successful by running the hello-world image.
-
-```bash
-sudo docker run hello-world
-```
-
-You should see the following output:
-
-```bash
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-    (arm64v8)
- 3. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-
-To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
-
-Share images, automate workflows, and more with a free Docker ID:
- https://hub.docker.com/
-
-For more examples and ideas, visit:
- https://docs.docker.com/get-started/
-```
-
-3. Install Nginx
-
-```bash
-sudo apt install nginx
-sudo systemctl start nginx
-```
-
-## Step 2: Deploying Docmost
-
-1. Create `docker-compose.yml` file with the following content.
-
-```yaml
-services:
-  docmost:
-    image: docmost/docmost:latest
-    depends_on:
-      - db
-      - redis
-    environment:
-      APP_URL: "http://localhost:3000"
-      APP_SECRET: "REPLACE_WITH_LONG_SECRET"
-      DATABASE_URL: "postgresql://docmost:STRONG_DB_PASSWORD@db:5432/docmost?schema=public"
-      REDIS_URL: "redis://redis:6379"
-     MAIL_DRIVER: 'smtp'
-      SMTP_HOST: 'REPLACE_WITH_SMTP_HOST'
-      SMTP_PORT: 'REPLACE_WITH_SMTP_PORT'
-      SMTP_USERNAME: 'REPLACE_WITH_SMTP_USERNAME'
-      SMTP_PASSWORD: 'REPLACE_WITH_SMTP_PASSWORD'
-      MAIL_FROM_ADDRESS: 'REPLACE_WITH_SMTP_EMAIL'
-      MAIL_FROM_NAME: 'REPLACE_WITH_SMTP_NAME'
-    ports:
-      - "3000:3000"
-    restart: unless-stopped
-    volumes:
-      - docmost:/app/data/storage
-
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: docmost
-      POSTGRES_USER: docmost
-      POSTGRES_PASSWORD: STRONG_DB_PASSWORD
-    restart: unless-stopped
-    volumes:
-      - db_data:/var/lib/postgresql/data
-
-  redis:
-    image: redis:7.2-alpine
-    restart: unless-stopped
-    volumes:
-      - redis_data:/data
-
-volumes:
-  docmost:
-  db_data:
-  redis_data:
-```
-
-If you want to invite others to use this workspace, you will need to add SMTP variables to send invitation through emails. You can use [Zoho](https://mail.zoho.com) to get free custom emails.
-
-> Make sure to update environment variables with your own values and take a look at [supported variables](https://docmost.com/docs/self-hosting/environment-variables/).
-
-2. Run the following command to run the container.
-
-```bash
-docker compose up --build -d
-```
-
-3. Visit `http://your-vps-ip:3000` to see docmost running.
-
-## Step 3: Setting up custom domain with Nginx
-
-1. Visit your domain registrar and add an A record pointing to your VPS IP.
-2. Create a new Nginx configuration file.
-
-```bash
-touch /etc/nginx/sites-available/docmost
-```
-
-3. Add the following content to the file.
-
-```nginx
-server {
-    listen 80;
-    listen [::]:80;
-    server_name <domain_name> www.<domain_name>;
-
-    # Redirect HTTP to HTTPS
-    location / {
-        return 301 https://$host$request_uri;
-    }
-}
-
-server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
-    server_name <domain_name> www.<domain_name>;
-
-    location / {
-        proxy_pass http://localhost:<project_port>/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
-```
-
-<CustomNote>
-  Make sure to replace <SpanNote>domain_name</SpanNote> with your domain name and <SpanNote>project_port</SpanNote> with the port on which docmost is running.
-</CustomNote>
-
-
-4. Create a symbolic link to the `sites-enabled` directory.
-
-```bash
-sudo ln -s /etc/nginx/sites-available/docmost /etc/nginx/sites-enabled/docmost
-```
-
-
-5. Restart Nginx.
-
-```bash
-sudo systemctl restart nginx
-```
-
-## Step 4: Setting up SSL with Certbot
-
-1. Install Certbot.
-
-```bash
-sudo apt install python3-certbot-nginx -y
-```
-
-2. Obtain SSL certificate.
-
-```bash
-sudo certbot --nginx -d <domain_name> -d www.<domain_name>
-```
-
-3. Restart Nginx.
-
-```bash
-sudo systemctl restart nginx
-```
-
-## Conclusion
-
-You have successfully deployed docmost on your VPS and set up a custom domain with a free SSL certificate. You can now access docmost at `https://your-domain.com`
-
-Feel free to reach out to me on [X](https://X.com/ayushchugh_) or drop an [Email](mailto:hey@ayushchugh.com) if you have any questions or need help.
-
-## References
-
-1. [Docmost](https://docmost.com)
-1. [Docker Documentation](https://docs.docker.com)
-1. [Nginx Documentation](https://nginx.org/en/docs/)
-1. [Certbot Documentation](https://certbot.eff.org/docs/)
-1. [Zoho Mail](https://mail.zoho.com)
+<H1>Conclusion</H1>
+B-trees are a fundamental data structure in computer science, particularly in systems
+where efficient data storage and retrieval are critical. Their balanced nature, efficient
+disk access, and scalability make them ideal for applications ranging from databases
+to file systems

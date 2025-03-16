@@ -165,7 +165,7 @@ function H2({ children }: {children: React.ReactNode}) {
   )
 }
 
-function Br({ children }: { children: React.ReactNode }) {
+function Br() {
   return <br />;
 }
 

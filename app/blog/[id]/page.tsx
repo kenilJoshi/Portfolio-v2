@@ -229,7 +229,7 @@ const MyPage = ({
 
   return (
     <div className=" text-white">
-      <div className="mx-[2rem] md:mx-[25rem] py-10">
+      <div className="mx-[1.5rem] md:mx-[25rem] py-10">
         <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
           {blogTitle}
         </h1>

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Blogs as blogs } from "../../data/blog";
 import slugify from "slugify";
 import formatDate from "../../utils/formatDate";
-import "../../../public/content/text.mdx";
+// import "../../../public/content/text.mdx";
 import FloatingNavbar from "../../components/Navbar";
 import Image from "next/image";
 import { VscCircleSmallFilled } from "react-icons/vsc";
@@ -37,7 +37,6 @@ function Code({ children, className, ...props }) {
 function BulletIcon({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ display: "inline-flex", gap: "4px" }} className="leading-7">
-      <VscCircleSmallFilled />
       <span>{children}</span>
     </div>
   );
@@ -159,9 +158,23 @@ function H1({ children }: { children: React.ReactNode }) {
   );
 }
 
+function I({ children }: { children: React.ReactNode}) {
+  return  (
+    <i>{children}</i>
+  )
+}
+
 function H2({ children }: {children: React.ReactNode}) {
   return (
     <h2 style={{ fontSize: "1.0rem", fontWeight: "bold" }}>{children}</h2>
+  )
+}
+
+function HighlightWord({ children }: {children: React.ReactNode}) {
+  return (
+    <span className="bg-stone-950 px-1 rounded text-stone-300 font-semibold">
+      {children}
+    </span>
   )
 }
 
@@ -183,8 +196,10 @@ const components = {
   img: RoundedImage,
   code: Code,
   CustomNote,
+  I,
   H1,
   H2,
+  HighlightWord,
   Image,
   Br,
   BulletIcon
@@ -234,9 +249,13 @@ const MyPage = ({
           {blogTitle}
         </h1>
         <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        {MdxComponent ? (
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
             {formatDate(publishDate)}
           </p>
+          ) : (
+            ""
+          )}
         </div>
         {coverImage && (
           <div className="my-4 rounded-lg">

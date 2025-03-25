@@ -20,11 +20,11 @@ export const Blogs: BlogsType[] = [
   },
   {
     id: 2,
-    title: "Transactional vs. Analytical Databases",
-    content: "What are Database Indexing...",
+    title: "Transactional & Analytical Databases",
+    content: "Transactional and analytical databases...",
     author: "Kenil Joshi",
     filePath: "Transction.mdx",
-    publishedAt: "2025-03-16",
+    publishedAt: "2025-03-25",
     coverImage: null,
   },
 ];

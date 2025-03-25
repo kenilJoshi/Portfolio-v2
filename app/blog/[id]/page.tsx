@@ -7,7 +7,6 @@ import formatDate from "../../utils/formatDate";
 // import "../../../public/content/text.mdx";
 import FloatingNavbar from "../../components/Navbar";
 import Image from "next/image";
-import { VscCircleSmallFilled } from "react-icons/vsc";
 
 function CustomLink(props) {
   const href = props.href;

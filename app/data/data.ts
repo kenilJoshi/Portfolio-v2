@@ -16,6 +16,15 @@ export const PersonalDetails = {
 export const experiences = [
   {
     id: 0,
+    img: "https://res.cloudinary.com/dugadzwcv/image/upload/v1744992314/download_n96vsc.png",
+    role: "Backend Developer",
+    company: "Testlify",
+    date: "Dec 2024 - Present",
+    desc: "Working on Scalable Backend",
+    skills: ["NodeJs", "MySQL", "MongoDb"],
+  },
+  {
+    id: 1,
     img: "https://res.cloudinary.com/dugadzwcv/image/upload/v1732779798/images12_eh0xkf.jpg",
     role: "Full Stack Developer",
     company: "Terado Engineering",
@@ -33,35 +42,22 @@ export const experiences = [
     ],
   },
   {
-    id: 1,
+    id: 2,
     img: "https://res.cloudinary.com/dugadzwcv/image/upload/v1702490808/download_izw8rl.png",
     role: "FrontEnd Developer",
     company: "IIDE",
     date: "Jan 2023 - July 2023",
     desc: "Worked as an Frontend Developer at IIDE. Worked on LMS website",
-    skills: [
-      "HTML",
-      "CSS",
-      "JS",
-      "AngularJS",
-      "TailwindCSS",
-      "Material UI"
-    ],
+    skills: ["HTML", "CSS", "JS", "AngularJS", "TailwindCSS", "Material UI"],
   },
   {
-    id: 2,
+    id: 3,
     img: "https://res.cloudinary.com/dugadzwcv/image/upload/v1732779694/download_1_vu5ypz.png",
     role: "Backend Developer",
     company: "ATG",
     date: "Jan 2022 - Jun 2022",
     desc: "Worked as an Backend developer. Worked on NodeJS and MySQL and created Chrome extension",
-    skills: [
-      "NodeJs",
-      "MySQL",
-      "HTML",
-      "CSS",
-      "JavaScript",
-    ],
+    skills: ["NodeJs", "MySQL", "HTML", "CSS", "JavaScript"],
   },
 ];
 
@@ -94,8 +90,8 @@ export const skills = [
   "Web Socket",
   "Postgres",
   "Mongodb",
-  "MySql"
-]
+  "MySql",
+];
 
 export const projects = [
   {
@@ -114,7 +110,7 @@ export const projects = [
       "Node Js",
       "Express Js",
       "Cloudinary",
-      "Prisma"
+      "Prisma",
     ],
     category: "web app",
     github: "https://github.com/kenilJoshi/ecomm-frontend",
@@ -128,14 +124,7 @@ export const projects = [
       "Easily shorten your long URLs for sharing. Just enter your long URL below, and we’ll create a short, manageable link for you. Perfect for social media, emails, and more!",
     image:
       "https://res.cloudinary.com/dugadzwcv/image/upload/v1729270596/Screenshot_from_2024-10-18_22-26-08_d1iyzr.png",
-    tags: [
-      "Eslint",
-      "Vercel",
-      "NextJS",
-      "Mongodb",
-      "Mongoose",
-      "TypeScript"
-    ],
+    tags: ["Eslint", "Vercel", "NextJS", "Mongodb", "Mongoose", "TypeScript"],
     category: "web app",
     github: "https://github.com/kenilJoshi/urlShortner",
     webapp: "https://url-shortner-smoky.vercel.app/",
@@ -158,10 +147,10 @@ export const projects = [
       "WebSocket",
       "RealTime",
       "Prisma",
-      "TypeScript"
+      "TypeScript",
     ],
     category: "web app",
     github: "https://github.com/kenilJoshi/Whiteboard-frontend",
     webapp: false,
-  }
-]
+  },
+];

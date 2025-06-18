@@ -7,6 +7,7 @@ import {
 } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+import { PersonalDetails } from "app/data/data";
 
 export default function FloatingNavbar() {
   return (
@@ -26,7 +27,7 @@ export default function FloatingNavbar() {
       </div>
       <div className="">
         <Link
-          href="https://www.linkedin.com/in/kenil-joshi-2536741ab/"
+          href={PersonalDetails.linkedin}
           className="text-white text-lg hover:text-gray-300 transform transition-transform duration-300 hover:scale-125"
         >
           <FaLinkedin />
@@ -34,7 +35,7 @@ export default function FloatingNavbar() {
       </div>
       <div className="transform transition-transform duration-300 hover:scale-125">
         <Link
-          href="https://x.com/KenilJoshi3"
+          href={PersonalDetails.twitter}
           className="text-white text-lg hover:text-gray-300"
         >
           <FaSquareXTwitter />
@@ -42,7 +43,7 @@ export default function FloatingNavbar() {
       </div>
       <div className="transform transition-transform duration-300 hover:scale-125">
         <Link
-          href="https://github.com/kenilJoshi"
+          href={PersonalDetails.github}
           className="text-white text-lg hover:text-gray-300"
         >
           <FaGithub />
@@ -50,7 +51,7 @@ export default function FloatingNavbar() {
       </div>
       <div className="transform transition-transform duration-300 hover:scale-125">
         <Link
-          href="https://drive.google.com/file/d/1_pAri8vG2cwnkLYs_YXl9FkWStoUPP2U/view?usp=drive_link"
+          href={PersonalDetails.resume}
           className="text-white text-lg hover:text-gray-300"
         >
           <FaGoogleDrive />

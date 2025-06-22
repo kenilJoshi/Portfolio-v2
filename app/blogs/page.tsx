@@ -1,6 +1,6 @@
 import BlogsClient from "./BlogsClient";
 import { getPosts } from "lib/requests";
-import { BlogsType, ApiResponse } from "../../lib/type";
+import { BlogsType } from "../../lib/type";
 
 // Define the structure of the API response
 interface PostNode {
@@ -16,9 +16,6 @@ interface PostNode {
   coverImage: string;
 }
 
-interface PostsApiResponse {
-  edges: PostNode;
-}
 
 export default async function BlogsPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

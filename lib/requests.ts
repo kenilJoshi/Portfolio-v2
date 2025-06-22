@@ -1,8 +1,10 @@
 import request, { gql } from "graphql-request";
 import { GetPostByIdResponse, GetPostsResponse, PublicationName } from "./type";
 
-const endpoint = process.env.NEXT_PUBLIC_HASHNODE_ENDPOINT;
-const publicationId = process.env.NEXT_PUBLIC_HASHNODE_PUBLICATION_ID;
+const endpoint =
+  process.env.NEXT_PUBLIC_HASHNODE_ENDPOINT || "https://gql.hashnode.com";
+const publicationId =
+  process.env.NEXT_PUBLIC_HASHNODE_PUBLICATION_ID || "6849e7bd0730fa82f1b0d903";
 
 export async function getBlogName() {
   const query = gql`

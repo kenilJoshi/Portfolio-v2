@@ -86,6 +86,15 @@ export type BlogsType = {
   };
 };
 
+export type PostEdge = {
+  node: PostMetadata;
+  cursor: string; // Add this if your API includes cursors
+};
+
+export type ApiResponse = {
+  edges: PostEdge[];
+};
+
 export interface GetPostByIdResponse {
   post: {
     id: string;

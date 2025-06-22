@@ -3,18 +3,7 @@ import { getPosts } from "lib/requests";
 import { BlogsType } from "../../lib/type";
 
 // Define the structure of the API response
-interface PostNode {
-  id: string;
-  title: string;
-  brief: string;
-  slug: string;
-  publishedAt: string;
-  author: {
-    name: string;
-    profilePicture: string;
-  };
-  coverImage: string;
-}
+
 
 
 export default async function BlogsPage() {

@@ -8,7 +8,6 @@ import {
 import { FaSquareXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 import { PersonalDetails } from "app/data/data";
-import { getBlogName, getPosts } from "lib/requests";
 
 export default async function FloatingNavbar() {
 

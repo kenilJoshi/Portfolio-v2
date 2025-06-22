@@ -1,17 +1,10 @@
 import request, { gql } from "graphql-request";
-import {
-  GetPostByIdResponse,
-  GetPostBySlugResponse,
-  GetPostsResponse,
-  PublicationName,
-} from "./type";
+import { GetPostByIdResponse, GetPostsResponse, PublicationName } from "./type";
 
 const endpoint = process.env.NEXT_PUBLIC_HASHNODE_ENDPOINT;
 const publicationId = process.env.NEXT_PUBLIC_HASHNODE_PUBLICATION_ID;
 
 export async function getBlogName() {
-  console.log("ken", endpoint);
-
   const query = gql`
     query getBlogName($publicationId: ObjectId!) {
       publication(id: $publicationId) {
@@ -24,7 +17,6 @@ export async function getBlogName() {
   const response = await request<PublicationName>(endpoint || "", query, {
     publicationId,
   });
-  console.log(response);
 
   return {
     title: response.publication.title,
@@ -90,8 +82,6 @@ export async function getPostById(postId: string) {
       }
     }
   `;
-  console.log(postId);
-
   const response = await request<GetPostByIdResponse>(endpoint || "", query, {
     postId,
   });

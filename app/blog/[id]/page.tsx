@@ -286,7 +286,7 @@
 // app/blog/[id]/page.tsx
 import { getPostById } from "../../../lib/requests";
 import BlogClient from "./BlogClient";
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function BlogPostPage({ params }: { params: { id: string } }) {
   const { id } = await params
   const { post } = await getPostById(id);

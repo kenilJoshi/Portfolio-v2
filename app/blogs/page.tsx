@@ -2,11 +2,11 @@
 
 import BlogsClient from "./BlogsClient";
 import { getPosts } from "lib/requests";
+import { BlogsType } from "lib/type";
 
 export default async function BlogsPage() {
   const edges = await getPosts({});
-  //@ts-ignore
-  const formatted = edges.map(({ node }: any) => ({
+  const formatted: BlogsType[] = edges.map(({ node }: any) => ({
     id: node.id,
     title: node.title,
     brief: node.brief,
@@ -21,6 +21,6 @@ export default async function BlogsPage() {
 
   console.log(formatted);
 
-  return <BlogsClient blogs={formatted} />;
+  return <BlogsClient blogs={formatted || []} />;
 }
 

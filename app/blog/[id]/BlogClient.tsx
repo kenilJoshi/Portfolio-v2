@@ -3,7 +3,7 @@
 import formatDate from "../../utils/formatDate";
 import FloatingNavbar from "../../components/Navbar";
 import Image from "next/image";
-
+//@ts-ignore
 export default function BlogClient({ post }: { post: any }) {
     if (!post) {
         return (

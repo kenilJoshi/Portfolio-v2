@@ -105,3 +105,18 @@ export interface GetPostByIdResponse {
     };
   };
 }
+
+export interface BlogNode {
+  id: string;
+  title: string;
+  brief: string;
+  slug: string;
+  publishedAt: string;
+  coverImage?: {
+    url: string;
+  } | null;
+  author: {
+    name: string;
+    profilePicture: string;
+  };
+}

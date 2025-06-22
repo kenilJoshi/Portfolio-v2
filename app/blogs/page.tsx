@@ -1,11 +1,11 @@
-
-
 import BlogsClient from "./BlogsClient";
 import { getPosts } from "lib/requests";
 import { BlogsType } from "lib/type";
 
 export default async function BlogsPage() {
   const edges = await getPosts({});
+  console.log(edges);
+
   const formatted: BlogsType[] = edges.map(({ node }: any) => ({
     id: node.id,
     title: node.title,
@@ -19,8 +19,5 @@ export default async function BlogsPage() {
     coverImage: node.coverImage,
   }));
 
-  console.log(formatted);
-
-  return <BlogsClient blogs={formatted || []} />;
+  return <BlogsClient blogs={formatted} />;
 }
-

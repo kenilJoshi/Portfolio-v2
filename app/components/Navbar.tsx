@@ -8,8 +8,11 @@ import {
 import { FaSquareXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 import { PersonalDetails } from "app/data/data";
+import { getBlogName, getPosts } from "lib/requests";
 
-export default function FloatingNavbar() {
+export default async function FloatingNavbar() {
+
+
   return (
     <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50 bg-black/80 backdrop-blur-lg rounded-full px-6 py-4 shadow-lg flex items-center space-x-6">
       <div className="">

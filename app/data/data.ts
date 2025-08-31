@@ -8,7 +8,7 @@ export const PersonalDetails = {
   twitter: "https://x.com/KenilJoshi3",
   github: "https://github.com/kenilJoshi",
   resume:
-    "https://drive.google.com/file/d/1fIu_Se_y4PA-NumtKbKPd8KDvLNUCiem/view?usp=sharing",
+    "https://drive.google.com/file/d/1nV7mCZQfeWGtOU_IWkLK8J5zV3VjUBNd/view?usp=sharing",
   profilePhoto:
     "https://res.cloudinary.com/dugadzwcv/image/upload/v1710310809/vnfnbp2joe6htgksth9d.jpg",
 };

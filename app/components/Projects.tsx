@@ -14,8 +14,6 @@ type Project = {
 };
 
 const ProjectCard = ({ project }: { project: Project }) => {
-  console.log("Keni");
-  
   return (
     <div className="bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden flex flex-col">
       <div className="relative w-full h-36">

@@ -96,6 +96,30 @@ export const skills = [
 export const projects = [
   {
     id: 0,
+    title: "ReelForge",
+    date: "Dec 2025 - Now",
+    description:
+      "ReelForge is a cutting-edge video editing web application that empowers users to unleash their creativity and craft stunning videos with ease. With an intuitive interface and powerful features, ReelForge allows users to seamlessly edit, enhance, and transform their videos into captivating masterpieces. Whether you're a beginner or a seasoned video editor, ReelForge provides a user-friendly platform to bring your vision to life. From trimming and merging clips to adding transitions, effects, and music, ReelForge offers a comprehensive suite of tools to elevate your video editing experience. Create professional-quality videos for social media, presentations, or personal projects with ReelForge's innovative features and user-centric design.",
+    image:
+      "https://res.cloudinary.com/dugadzwcv/image/upload/v1773577473/23aa068e-04eb-4d42-9c38-4fece29c208e.png",
+    tags: [
+      "Eslint",
+      "Vercel",
+      "NextJs",
+      "Mongodb",
+      "Node Js",
+      "FastApi",
+      "FFMPEG",
+      "Python",
+      "Redis",
+      "AI Agents"
+    ],
+    category: "web app",
+    github: "https://github.com/Duo-Bytes/reel-forge-frontend",
+    webapp: "https://reelforge.studio/",
+  },
+  {
+    id: 0,
     title: "Ecomm",
     date: "Jan 2024 - Jan 2024",
     description:
